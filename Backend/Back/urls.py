@@ -22,7 +22,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path( '', include('Inicio.urls')),
-    path('Api/Contenido/', include('Contenido.urls')),
+    path('', include('Contenido.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('api-auth/', include('rest_framework.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
