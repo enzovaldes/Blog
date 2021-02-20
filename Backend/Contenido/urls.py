@@ -4,7 +4,7 @@ from .views import PostBlogListView, PostBlogDetailView, PostBlogFeaturedView, P
 
 urlpatterns = [
     path('api/Contenido/', views.PostBlogListView.as_view()),
-    path('<slug>', PostBlogDetailView.as_view()),
-    path('Destacados', PostBlogFeaturedView.as_view()),
-    path('Categoria', PostBlogCategoryView.as_view()),
+    path('api/<Slug>/', PostBlogDetailView.as_view()),
+    path('api/Destacados/', PostBlogFeaturedView.as_view()),
+    path('api/Categoria/', PostBlogCategoryView.as_view()),
 ]

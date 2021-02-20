@@ -14,21 +14,21 @@ from rest_framework.generics import RetrieveAPIView, ListAPIView
 class PostBlogListView(ListAPIView):
     queryset = PostBlog.objects.order_by('-FechaCreacion')
     serializer_class = PostBlogSerializer
-    lookup_field = 'slug'
+    lookup_field = 'Slug'
     permission_classes = (permissions.AllowAny,)
 
 #Esta vista despliega la lista de publicaciones destacadas del blog.
 class PostBlogFeaturedView(ListAPIView):
     queryset = PostBlog.objects.filter(Destacados = True)
     serializer_class = PostBlogSerializer
-    lookup_field = 'slug'
+    lookup_field = 'Slug'
     permission_classes = (permissions.AllowAny,)
 
 #esta vista despliega los detalles de cada publicacion de la mas reciente a las mas antigua.
 class PostBlogDetailView(RetrieveAPIView):
     queryset = PostBlog.objects.order_by('-FechaCreacion')
     serializer_class = PostBlogSerializer
-    lookup_field = 'slug'
+    lookup_field = 'Slug'
     permission_classes = (permissions.AllowAny,)
 
 #esta vista despliega la lista por categorias del blog.
