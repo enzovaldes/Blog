@@ -40,4 +40,9 @@ Después de instalar todas las librerías, ejecuta `python manage.py migrate` y 
 
 En el localhost tendrás acceso a la API.
 
+```
+- http://localhost:8000/admin
+- http://localhost:8000/api/Contenido
+```
+
 ***Estos comandos son solo para ejecutar la API, pronto estará disponible el Frontend!!***
