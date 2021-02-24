@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import PostBlog
 from .serializers import PostBlogSerializer
-from rest_framework import generics, permissions
+from rest_framework import generics
+from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import RetrieveAPIView, ListAPIView 
@@ -32,15 +33,15 @@ class PostBlogDetailView(RetrieveAPIView):
     permission_classes = (permissions.AllowAny,)
 
 #esta vista despliega la lista por categorias del blog.
-class PostBlogCategoryView(APIView):
-    serializers_class = PostBlogSerializer
+class PostBlogCategoryView(generics.ListCreateAPIView):#lo de dentro del parentesis fue cambiado (APIView)
+    serializer_class = PostBlogSerializer
     permission_classes = (permissions.AllowAny,)
 
 #con esta funcion los datos se solicitaran por si mismos.
-    def Post(self, request, format=None):
+    def post(self, request, format=None):
         data = self.request.data
         Categoria = data('Categoria')
-        queryset = PostBlog.objects.order_by('-FechaCreacion').filter(category_iexact= Categoria)
+        queryset = PostBlog.objects.order_by('-FechaCreacion').filter(category_iexact=Categoria)
         serializer = PostBlogSerializer(queryset, many=True)
 
         return Response(serializer.data)

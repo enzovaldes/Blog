@@ -10,6 +10,9 @@ const App = () => (
         <Layout>
           <Switch>
             <Route exact path='/' component={Home} />
+            <Route exact path='/blog' component={Blog} />
+            <Route exact path='/categoria/:id' component={Category} />
+            <Route exact path='/blog/:id' component={BlogDetail} />
           </Switch>
         </Layout>
       </Router>
