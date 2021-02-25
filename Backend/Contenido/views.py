@@ -18,6 +18,10 @@ class PostBlogListView(ListAPIView):
     lookup_field = 'Slug'
     permission_classes = (permissions.AllowAny,)
 
+
+#estas vistas las cambie de orden, revisar el detail si esta en la posicion que deberia#####
+
+
 #Esta vista despliega la lista de publicaciones destacadas del blog.
 class PostBlogFeaturedView(ListAPIView):
     queryset = PostBlog.objects.filter(Destacados = True)
