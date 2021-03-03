@@ -24,10 +24,11 @@ class PostBlogListView(ListAPIView):
 
 #Esta vista despliega la lista de publicaciones destacadas del blog.
 class PostBlogFeaturedView(ListAPIView):
-    queryset = PostBlog.objects.filter(Destacados = True)
+    queryset = PostBlog.objects.all().filter(Destacados=True)
     serializer_class = PostBlogSerializer
     lookup_field = 'Slug'
     permission_classes = (permissions.AllowAny,)
+
 
 #esta vista despliega los detalles de cada publicacion de la mas reciente a las mas antigua.
 class PostBlogDetailView(RetrieveAPIView):
@@ -37,17 +38,17 @@ class PostBlogDetailView(RetrieveAPIView):
     permission_classes = (permissions.AllowAny,)
 
 #esta vista despliega la lista por categorias del blog.
-class PostBlogCategoryView(generics.ListCreateAPIView):#lo de dentro del parentesis fue cambiado (APIView)
+class PostBlogCategoryView(APIView):#lo de dentro del parentesis fue cambiado (APIView)
     serializer_class = PostBlogSerializer
     permission_classes = (permissions.AllowAny,)
 
 #con esta funcion los datos se solicitaran por si mismos.
     def post(self, request, format=None):
         data = self.request.data
-        Categoria = data('Categoria')
-        queryset = PostBlog.objects.order_by('-FechaCreacion').filter(category_iexact=Categoria)
+        Categoria = data['Categoria']
+        queryset = PostBlog.objects.order_by('-FechaCreacion').filter(category__iexact=Categoria)
         serializer = PostBlogSerializer(queryset, many=True)
-
+        
         return Response(serializer.data)
 
 

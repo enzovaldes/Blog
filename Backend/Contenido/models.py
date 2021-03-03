@@ -25,19 +25,19 @@ class PostBlog(models.Model):
     #Esta funcion hace que se puedan tener varios titulos iguales y que los slug no coincidan.
     def Save(self, *args, **kwargs):
         SlugOriginal= slugify(self.Titulo)
-        queryset = PostBlog.objects.all().filter(slug_iexact=SlugOriginal).count()
+        queryset = PostBlog.objects.all().filter(slug__iexact=SlugOriginal).count()
 
         count = 1
         Slug = SlugOriginal
         while(queryset):
             Slug = SlugOriginal +'-'+ str(count)
             count +=1
-            queryset = PostBlog.objects.all().filter(slug_iexact=slug).count()
+            queryset = PostBlog.objects.all().filter(slug__iexact=Slug).count()
         self.Slug = Slug
 
-        if self.Destacados :
+        if self.Destacados:
             try:
-                temp = PostBlog.objects.get(Contenido=True)
+                temp = PostBlog.objects.get(Destacados=True)
                 if self != temp:
                     temp.Destacados = False
                     temp.save()
