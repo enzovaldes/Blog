@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path( '', include('Inicio.urls')),
     path('', include('Contenido.urls')),
     path('summernote/', include('django_summernote.urls')),

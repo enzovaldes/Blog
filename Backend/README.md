@@ -1,6 +1,5 @@
 # Blog-Informatico
 Proyecto desarrollado con Django y React el cual consta de un blog informático simple.
-
 ### Pasos a seguir
 Luego de clonar el repositorio se debe crear un Virtual Environment con el siguiente comando:
 
