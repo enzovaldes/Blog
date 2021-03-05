@@ -26,18 +26,19 @@ const Blog = () => {
     },[]);
 
 //Este recupera 
-        useEffect(() => {
-            const fetchBlog = async () => {
-                try{
-                    const res = await axios.get(`${process.env.REACT_APP_API_URL}api/Contenido`);
-                    setPostBlogs(res.data);
-                }
-                catch(err) {
-    
-                }
+    useEffect(() => {
+        const fetchBlog = async () => {
+            try{
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}api/Contenido`);
+                setPostBlogs(res.data);
+                console.log(res.data)
             }
-            fetchBlog();
-        },[]);
+           catch(err) {
+    
+            }
+        }
+        fetchBlog();
+    },[]);
 
         const getBlog = () => {
             let list = [];
@@ -51,7 +52,7 @@ const Blog = () => {
                             <h3 className="mb-0">{PostBlog.Titulo}</h3>
                             <div className="mb-1 text-muted">{PostBlog.Fecha}</div>
                             <p className="card-text mb-auto">{PostBlog.MiniDes}</p>
-                            <Link to={`/api/${PostBlog.Slug}`} className="stretched-link">Seguir Leyendo</Link>
+                            <Link to={`/blog/${PostBlog.Slug}`} className="stretched-link">Seguir Leyendo</Link>
                         </div>
                         <div className="col-auto d-none d-lg-block">
                             <img width='260' height='250' src={PostBlog.Miniatura} alt='Imagen' />
@@ -92,7 +93,7 @@ const Blog = () => {
                         <h1 className='display-4 font-italic'>{blogDestacado.Titulo}</h1>
                         <p className='lead my-3'>{blogDestacado.MiniDes}</p>
                         <p className='lead mb-0'>
-                            <Link to={`/${blogDestacado.Slug}`} className='text-white font-weight-bold'>
+                            <Link to={`/blog/${blogDestacado.Slug}`} className='text-white font-weight-bold'>
                                 Seguir leyendo...
                             </Link>
                         </p>
